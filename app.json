@@ -16,7 +16,10 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.bulkovo.cnc"
+      "bundleIdentifier": "com.bulkovo.cnc",
+      "config": {
+        "usesNonExemptEncryption": false
+      }
     },
     "android": {
       "package": "com.bulkovo.cnc"
