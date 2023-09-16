@@ -1,5 +1,6 @@
 import axios from 'axios';
 
 export async function checkServer(endpoint: string) {
-    await axios.get('http://' + endpoint);
+    let res = await axios.get('http://' + endpoint);
+    return res.data === 'Welcome to Home CNC!';
 }
