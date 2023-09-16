@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "hobby-cnc",
+    "slug": "hobby-cnc",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.bulkovo.cnc"
+    },
+    "android": {
+      "package": "com.bulkovo.cnc"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
