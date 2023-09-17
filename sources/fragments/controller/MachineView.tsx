@@ -61,6 +61,13 @@ export const MachineView = React.memo((props: { host: string, state: MachineStat
                 <Text>GoTo</Text>
                 <Button title="Clearance" onPress={() => sendCommand(props.host, props.state.id, state.id, 'M496.1')} />
                 <Button title="Work Origin" onPress={() => sendCommand(props.host, props.state.id, state.id, 'M496.2')} />
+
+                <Button title="X+" onPress={() => sendCommand(props.host, props.state.id, state.id, 'G91G0X10')} />
+                <Button title="X-" onPress={() => sendCommand(props.host, props.state.id, state.id, 'G91G0X-10')} />
+                <Button title="Y+" onPress={() => sendCommand(props.host, props.state.id, state.id, 'G91G0Y10')} />
+                <Button title="Y-" onPress={() => sendCommand(props.host, props.state.id, state.id, 'G91G0Y-10')} />
+                <Button title="Z+" onPress={() => sendCommand(props.host, props.state.id, state.id, 'G91G0Z10')} />
+                <Button title="Z-" onPress={() => sendCommand(props.host, props.state.id, state.id, 'G91G0Z-10')} />
             </View>
         </View>
     );
