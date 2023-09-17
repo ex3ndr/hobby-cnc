@@ -43,7 +43,7 @@ export const Home = React.memo(() => {
                     </Text>
                 )}
                 {found === true && (
-                    <Button title='Connect to Controller' onPress={() => (navigation as any).navigate('controller')} />
+                    <Button title='Connect to Controller' onPress={() => (navigation as any).navigate('controller', { host: 'devcnc.home:3000' })} />
                 )}
             </View>
         </View>
