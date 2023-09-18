@@ -5,6 +5,7 @@ import { CardButton } from '../../components/CardButton';
 import { sendUnlock } from '../../api/sendUnlock';
 import { sendLock } from '../../api/sendLock';
 import { ControllerState } from '../../api/queryState';
+import { useNavigation } from '@react-navigation/native';
 
 const MessageView = React.memo((props: { message: string }) => {
     return <View><Text>{props.message}</Text></View>;
@@ -21,7 +22,8 @@ const toolNames = [
     '#6',
 ];
 
-export const MachineView = React.memo((props: { host: string, controller: ControllerState }) => {
+export const MachineView = React.memo((props: { host: string, name: string, controller: ControllerState }) => {
+    const navigation = useNavigation() as any;
 
     if (props.controller.status === 'connecting') {
         return <MessageView message='Connecting to machine...' />;
@@ -40,14 +42,18 @@ export const MachineView = React.memo((props: { host: string, controller: Contro
 
     return (
         <View style={{ flexDirection: 'column', backgroundColor: 'white', flexGrow: 1, flexBasis: 0 }}>
-            <View style={{ flexDirection: 'row', gap: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
-                <CardButton title='Status' value={state.status} />
-                <CardButton title='X' value={state.workPosition.x.toFixed(4)} />
-                <CardButton title='Y' value={state.workPosition.y.toFixed(4)} />
-                <CardButton title='Z' value={state.workPosition.z.toFixed(4)} />
-                <CardButton title='A' value={state.workPosition.a.toFixed(4)} />
-                <CardButton title='TOOL' value={toolNames[state.tool.index + 1]} />
+            <View style={{ flexDirection: 'row', marginHorizontal: 32, justifyContent: 'center', alignItems: 'center', marginTop: 32 }}>
+                <View style={{ width: 400, height: 400, backgroundColor: 'black', borderRadius: 16, marginRight: 32 }} />
+                <View style={{ gap: 8, flexDirection: 'row', flexWrap: 'wrap', flexGrow: 1, flexBasis: 0, justifyContent: 'center' }}>
+                    <CardButton title='Status' value={state.status} />
+                    <CardButton title='X' value={state.workPosition.x.toFixed(4)} />
+                    <CardButton title='Y' value={state.workPosition.y.toFixed(4)} />
+                    <CardButton title='Z' value={state.workPosition.z.toFixed(4)} />
+                    <CardButton title='A' value={state.workPosition.a.toFixed(4)} />
+                    <CardButton title='TOOL' value={toolNames[state.tool.index + 1]} />
+                </View>
             </View>
+            <Button title="Jog" onPress={() => navigation.navigate('jog', { host: props.host })} />
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', marginTop: 64, justifyContent: 'center' }}>
                 <Button title="Drop Tool" onPress={() => sendCommand(props.host, id, 'M6T-1')} />
                 <Button title="Get Probe" onPress={() => sendCommand(props.host, id, 'M6T0')} />

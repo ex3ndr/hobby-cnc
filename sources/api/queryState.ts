@@ -42,6 +42,7 @@ export type ManagerState = {
     state: 'not_configured'
 } | {
     state: 'configured',
+    name: string,
     controller: ControllerState
 };
 

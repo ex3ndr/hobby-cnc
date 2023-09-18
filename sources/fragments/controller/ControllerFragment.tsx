@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 import { queryState } from '../../api/queryState';
 import { MachineView } from './MachineView';
 
-export const Controller = React.memo(() => {
+export const ControllerFragment = React.memo(() => {
     let { host } = useRoute().params as { host: string };
     let state = useQuery(['state', host], async () => { return queryState(host) }, { refetchInterval: 1000 });
     if (state.isSuccess) {
@@ -13,7 +13,7 @@ export const Controller = React.memo(() => {
             return (<View><Text>Not Configured</Text></View>);
         }
         if (state.data.state === 'configured') {
-            return <MachineView host={host} controller={state.data.controller} />;
+            return <MachineView host={host} name={state.data.name} controller={state.data.controller} />;
         }
         return (<View><Text>Unknown controller state</Text></View>);
     }

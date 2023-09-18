@@ -3,8 +3,9 @@ import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-c
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Home } from './fragments/home/Home';
-import { Controller } from './fragments/controller/Controller';
+import { ControllerFragment } from './fragments/controller/ControllerFragment';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { JogFragment } from './fragments/controller/JogFragment';
 
 const Stack = createNativeStackNavigator();
 
@@ -29,7 +30,15 @@ export const Main = React.memo(() => {
                         />
                         <Stack.Screen
                             name='controller'
-                            component={Controller}
+                            component={ControllerFragment}
+                        />
+                        <Stack.Screen
+                            name='jog'
+                            component={JogFragment}
+                            options={{
+                                title: 'Jogging',
+                                presentation: 'formSheet'
+                            }}
                         />
                     </Stack.Navigator>
                 </NavigationContainer>
